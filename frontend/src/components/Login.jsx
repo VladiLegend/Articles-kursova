@@ -1,7 +1,12 @@
 import { Link } from "react-router-dom";
 import "../styles/LoginStyles.css";
+import { useState } from "react";
+import Dialog from "./Dialog";
 
 export default function Login() {
+    const [dialogIsOpen, setDialogIsOpen] = useState(false);
+    const [dialogContent, setDialogContent] = useState("");
+
     async function handleSubmit(e) {
         e.preventDefault();
         const res = await fetch("http://localhost:5000/login", {
@@ -9,17 +14,20 @@ export default function Login() {
             headers: {"Content-type": "application/json",
                 "Authorization": `Basic ${e.target["0"].value} ${e.target["1"].value}`
             }
-        }).then(res => ({text: res.text(), status: res.status()}));
+        }).then(res => ({text: res.text(), status: res.status}));
 
         if (res.status === 200) {
             sessionStorage.setItem("sessionID", res);
         }
         else {
-            // sth else?
+            setDialogContent(res.text);
+            setDialogIsOpen(true);
         }
     }
 
     return (
+        <>
+        <Dialog isOpen={dialogIsOpen} setIsOpen={setDialogIsOpen} content={dialogContent}/>
         <form className="login-register-form flex-container-column" 
         onSubmit={handleSubmit}>
             <label htmlFor="email">Email:</label>
@@ -28,9 +36,10 @@ export default function Login() {
             <label htmlFor="password">Password:</label>
             <input type="password" name="password" id="password" className="login-register-input"/>
 
-            <button className="login-register-submit-btn" type="submit">Login</button>
+            <button className="generic-btn" type="submit">Login</button>
 
             <Link className="register-href">Don't have an account? Register!</Link>
         </form>
+        </>
     )
 }

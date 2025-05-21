@@ -43,7 +43,7 @@ app.post("/login", (req, res) => {
         }
     }
 
-    res.send("Wrong Credentials");
+    res.status(401).send("Wrong Credentials.")
 })
 
 app.listen(5000);

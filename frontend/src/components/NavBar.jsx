@@ -1,4 +1,3 @@
-import { Outlet } from "react-router-dom";
 import "../styles/NavBarStyles.css";
 
 export default function NavBar() {
@@ -7,7 +6,6 @@ export default function NavBar() {
         <div className="nav-bar-container flex-container">
 
         </div>
-        <Outlet />
         </>
     )
 }

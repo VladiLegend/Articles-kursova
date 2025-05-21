@@ -5,5 +5,5 @@
 }
 
 .nav-bar-container >:not(:last-child) {
-    border-right: solid 2px var(--border-color);
+    border-right: solid 2px var(--accent-color);
 }
