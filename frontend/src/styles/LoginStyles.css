@@ -1,0 +1,32 @@
+.login-register-form {
+    margin: 10rem auto 0;
+    align-items: center;
+    padding: 2rem;
+    width: 32rem;
+    border: solid 3px var(--accent-color);
+}
+
+.login-register-input {
+    padding: 0.25rem;
+    box-sizing: border-box;
+    width: 100%;
+    border: solid 2px var(--border-color);
+    margin-bottom: 1rem;
+    border-radius: 5px;
+}
+
+.login-register-submit-btn {
+    background-color: var(--button-color);
+    padding: 0.25rem 1rem;
+    border-radius: 5px;
+    border: none;
+    font-size: 1.05rem;
+    cursor: pointer;
+}
+.login-register-submit-btn:hover {
+    background-color: var(--hover-color);
+}
+
+.register-href {
+    color: var(--accent-color);
+}

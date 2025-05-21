@@ -1,0 +1,9 @@
+.nav-bar-container {
+    width: 100vw;
+    height: 3rem;
+    background-color: var(--button-color);
+}
+
+.nav-bar-container >:not(:last-child) {
+    border-right: solid 2px var(--border-color);
+}

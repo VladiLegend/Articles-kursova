@@ -16,3 +16,19 @@ a {
   text-decoration: none;
   color: inherit;
 }
+
+:root {
+  --border-color: #f78104;
+  --hover-color: #ff8800;
+  --button-color: #faab36;
+  --accent-color: #249ea0;
+}
+
+.flex-container {
+  display: flex;
+}
+
+.flex-container-column {
+  display: flex;
+  flex-direction: column;
+}
