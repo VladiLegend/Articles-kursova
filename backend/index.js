@@ -46,4 +46,11 @@ app.post("/login", (req, res) => {
     res.status(401).send("Wrong Credentials.")
 })
 
+app.post("/removeSession", (req, res) => {
+    if (sessions[req.body]) {
+        sessions[req.body].sessionID = null;
+        delete sessions[req.body];
+    }
+})
+
 app.listen(5000);

@@ -18,8 +18,9 @@ a {
 }
 
 :root {
-  --border-color: #f78104;
+  --border-color: #f77104;
   --hover-color: #ff8800;
   --button-color: #faab36;
   --accent-color: #249ea0;
+  --hover-accent-color: #008083;
 }

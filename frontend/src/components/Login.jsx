@@ -1,11 +1,15 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "../styles/LoginStyles.css";
-import { useState } from "react";
+import { useState, useContext } from "react";
 import Dialog from "./Dialog";
+import { LoggedInContext } from "../App";
 
-export default function Login() {
+export default function Login({returnTo}) {
     const [dialogIsOpen, setDialogIsOpen] = useState(false);
     const [dialogContent, setDialogContent] = useState("");
+    const [isLoggedIn, setIsLoggedIn] = useContext(LoggedInContext);
+
+    const navigate = useNavigate();
 
     async function handleSubmit(e) {
         e.preventDefault();
@@ -18,6 +22,8 @@ export default function Login() {
 
         if (res.status === 200) {
             sessionStorage.setItem("sessionID", res);
+            setIsLoggedIn(true);
+            navigate(returnTo ? returnTo : "/");
         }
         else {
             setDialogContent(res.text);
