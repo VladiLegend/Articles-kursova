@@ -16,6 +16,7 @@ export default function NavBar() {
             })
 
             sessionStorage.removeItem("sessionID");
+            sessionStorage.removeItem("email");
             setIsLoggedIn(false);
         }
         else{

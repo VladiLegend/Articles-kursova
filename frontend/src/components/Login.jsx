@@ -18,10 +18,12 @@ export default function Login({returnTo}) {
             headers: {"Content-type": "application/json",
                 "Authorization": `Basic ${e.target["0"].value} ${e.target["1"].value}`
             }
-        }).then(res => ({text: res.text(), status: res.status}));
+        }).then(async (res) => ({text: await res.text(), status: res.status}));
 
         if (res.status === 200) {
-            sessionStorage.setItem("sessionID", res);
+            sessionStorage.setItem("sessionID", res.text);
+            console.log(res.text);
+            sessionStorage.setItem("email", e.target["0"].value);
             setIsLoggedIn(true);
             navigate(returnTo ? returnTo : "/");
         }
@@ -44,7 +46,7 @@ export default function Login({returnTo}) {
 
             <button className="generic-btn" type="submit">Login</button>
 
-            <Link className="register-href">Don't have an account? Register!</Link>
+            <Link to="/register" className="register-href">Don't have an account? Register!</Link>
         </form>
         </>
     )

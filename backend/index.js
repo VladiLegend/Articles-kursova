@@ -4,6 +4,7 @@ const cors = require("cors");
 
 const users = require("./db/users.js").users;
 const sessions = require("./db/sessions.js").sessions;
+const articles = require("./db/articles.js").articles;
 
 const corsOptions = {
   origin: 'http://localhost:3000',
@@ -51,6 +52,45 @@ app.post("/removeSession", (req, res) => {
         sessions[req.body].sessionID = null;
         delete sessions[req.body];
     }
+})
+
+app.get("/articles/random", (req, res) => {
+    const tempArticles = [...articles];
+    const articlesToSend = [];
+    while(tempArticles.length) {
+        const index = Math.floor(Math.random() * tempArticles.length);
+        articlesToSend.push(tempArticles[index]);
+        tempArticles.splice(index, 1);
+    }
+
+    res.status(200).send(articlesToSend);
+})
+
+app.get("/articles/favorites", (req, res) => {
+    const articlesToSend = [];
+    
+    if (!sessions[req.headers.authorization]) {
+        res.status(400).send("You need to login");
+        return;
+    }
+
+    for (const article of sessions[req.headers.authorization].favorites) {
+        articlesToSend.push(articles.find(a => a.id === article));
+    }
+
+    res.send(articlesToSend);
+})
+
+app.get("/articles/:category", (req, res) => {
+    const articlesToSend = [];
+
+    for(const article of articles) {
+        if (article.category === req.params.category.toLowerCase()) {
+            articlesToSend.push(article);
+        }
+    }
+
+    res.status(200).send(articlesToSend);
 })
 
 app.listen(5000);
