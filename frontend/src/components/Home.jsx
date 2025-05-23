@@ -56,7 +56,6 @@ export default function Home(){
         const overflowingTitles = [];
         for(const ref of titlesRef.current) {
             if (!ref) {continue;}
-            console.log(titlesRef, titlesRef.current[0], ref)
             overflowingTitles.push(ref.scrollWidth > ref.clientWidth);
         }
         setTitles(overflowingTitles);

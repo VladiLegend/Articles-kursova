@@ -1,0 +1,38 @@
+.article-viewport {
+    width: 80vw;
+    margin: 1rem auto 0;
+}
+
+.article-favorites {
+    margin-right: 1rem;
+}
+
+.article-content {
+    font-size: 1.1rem;
+    white-space: break-spaces;
+}
+
+.article-header-area {
+    padding-bottom: 1rem;
+    border-bottom: solid 5px var(--border-color);
+}
+
+.article-delete-btn {
+    width: 1.75rem;
+    height: 1.75rem;
+    color: white;
+    font-weight: bolder;
+    background-color: rgb(255, 0, 0);
+    border: solid 2px red;
+    border-radius: 25%;
+    cursor: pointer;
+    margin-left: 1rem;
+}
+.article-delete-btn:hover {
+    color: red;
+    background-color: white;
+}
+
+.article-category {
+    margin-bottom: 0.5rem;
+}

@@ -22,7 +22,6 @@ export default function Login({returnTo}) {
 
         if (res.status === 200) {
             sessionStorage.setItem("sessionID", res.text);
-            console.log(res.text);
             sessionStorage.setItem("email", e.target["0"].value);
             setIsLoggedIn(true);
             navigate(returnTo ? returnTo : "/");

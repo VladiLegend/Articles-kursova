@@ -9,6 +9,10 @@
     backdrop-filter: blur(2px);
     justify-content: center;
     align-items: center;
+    z-index: 1000;
+    opacity: 0;
+    pointer-events: none;
+    transition: all 0.15s;
 }
 
 .dialog-container {

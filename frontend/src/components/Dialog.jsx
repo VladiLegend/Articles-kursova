@@ -28,7 +28,7 @@ export default function Dialog({onOk = () => {}, onClose = () => {}, content, st
     }
 
     return (
-        <div className="modal-background flex-container" style={{display: isOpen ? "flex" : "none"}}
+        <div className="modal-background flex-container" style={isOpen ? {opacity: "1", pointerEvents: "auto"} : undefined}
         onClick={() => setIsOpen(false)}>
             <div className={`dialog-container flex-container-column ${className ? className : ""}`} style={style}>
                 <div className="dialog-content">

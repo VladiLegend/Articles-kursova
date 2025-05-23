@@ -4,6 +4,8 @@ import NavBar from './components/NavBar.jsx';
 import Login from './components/Login.jsx';
 import Home from './components/Home.jsx';
 import { createContext, useState } from 'react';
+import Article from './components/Article.jsx';
+import ErrorPage from './components/ErrorPage.jsx';
 
 export const LoggedInContext = createContext();
 
@@ -16,6 +18,8 @@ function App() {
       <Routes>
         <Route path='/' element={<Home />}/>
         <Route path='/login' element={<Login />}/>
+        <Route path='/article/:articleID' element={<Article />}/>
+        <Route path='*' element={<ErrorPage />}/>
       </Routes>
     </LoggedInContext.Provider>
     </>

@@ -37,6 +37,7 @@ app.post("/login", (req, res) => {
                 const sessionID = createRandomString(30);
                 if (!sessions[sessionID]) {
                     sessions[sessionID] = user;
+                    user.sessionID = sessionID;
                     res.send(sessionID);
                     return;
                 }
@@ -75,7 +76,10 @@ app.get("/articles/favorites", (req, res) => {
     }
 
     for (const article of sessions[req.headers.authorization].favorites) {
-        articlesToSend.push(articles.find(a => a.id === article));
+        const foundArticle = articles.find(a => a.id === article);
+        if (foundArticle) {
+            articlesToSend.push(foundArticle);
+        }
     }
 
     res.send(articlesToSend);
@@ -91,6 +95,72 @@ app.get("/articles/:category", (req, res) => {
     }
 
     res.status(200).send(articlesToSend);
+})
+
+app.get("/article/:id", (req, res) => {
+    const article = {...articles.find(a => a.id == req.params.id)};
+    if (article) {
+        if (sessions[req.headers.authorization]) {
+            article.isInFavorites = sessions[req.headers.authorization].favorites.includes(article.id);
+        }
+        else {
+            article.isInFavorites = false;
+        }
+
+        res.send(article);
+        return;
+    }
+
+    res.status(400).send("Article not found.");
+})
+
+app.patch("/user/removeFromFavourites/:id", (req, res) => {
+    if (!sessions[req.headers.authorization]) {
+        res.status(400).send("Invalid session.");
+        return;
+    }
+    
+    sessions[req.headers.authorization].favorites.splice(sessions[req.headers.authorization].favorites.indexOf(req.params.id), 1);
+    articles.find(a => a.id == req.params.id).favourites--;
+    res.sendStatus(200);
+})
+
+app.patch("/user/addToFavorites/:id", (req, res) => {
+    if (!sessions[req.headers.authorization]) {
+        res.status(400).send("Invalid session.");
+        return;
+    }
+
+    const article = articles.find(a => a.id == req.params.id); 
+    if (!article) {
+        res.status(400).send("Article doesn't exist.");
+        return;
+    }
+    sessions[req.headers.authorization].favorites.push(req.params.id);
+    article.favourites++;
+    res.sendStatus(200);
+})
+
+app.delete("/articles/:id", (req, res) => {
+    if (!sessions[req.headers.authorization]) {
+        res.status(400).send("Invalid session.");
+        return;
+    }
+
+    const indexOfArticle = articles.findIndex(a => a.id === req.params.id);
+    if (indexOfArticle === -1) {
+        res.status(400).send("This article doesn't exist.");
+        return;
+    }
+
+    if (articles[indexOfArticle].creator !== sessions[req.headers.authorization].email) {
+        res.status(400).send("You are not this article's writer.");
+        return;
+    }
+
+    articles.splice(indexOfArticle, 1);
+
+    res.sendStatus(200);
 })
 
 app.listen(5000);
