@@ -41,7 +41,7 @@ export default function NavBar() {
             </div>
 
             <div className="drop-down-nav-container nav-bar-item flex-container nav-search-container">
-                <input type="text" name="search" id="search" className="nav-search-input"/>
+                <input type="text" name="search" id="search" className="nav-search-input" placeholder="Search"/>
             </div>
 
             <label className="nav-bar-item nav-login" onClick={handleLoginButton}>{isLoggedIn ? "Logout" : "Login"}</label>
