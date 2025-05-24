@@ -80,6 +80,12 @@ export default function Home(){
         calculateOverflowingArticles(favoriteArticleTitlesRef, favoriteArticleContainersRef, setFavoriteArticleTitlesOverflow, setFavoriteArticleContainersOverflow),
     [favoriteArticles]);
 
+    useEffect(() => {
+        if (!isLoggedIn) {
+            setFavoriteArticles([]);
+        }
+    }, [isLoggedIn]);
+
     return(
         <div className="flex-container home-wrapper">
             <div className="flex-container-column home-section-container">
