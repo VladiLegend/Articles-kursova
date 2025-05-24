@@ -62,7 +62,7 @@ read-full-message {
     bottom: 0rem;
     height: 1.5rem;
     backdrop-filter: blur(7px);
-    background-color: rgba(0, 128, 131, 0.15);
+    background-color: rgba(0, 128, 131, 0.35);
     width: 100%;
     left: 0;
     text-align: center;

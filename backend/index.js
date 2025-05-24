@@ -163,4 +163,20 @@ app.delete("/articles/:id", (req, res) => {
     res.sendStatus(200);
 })
 
+app.post("/search", (req, res) => {
+    const articlesToSend = [];
+
+    for (const article of articles) {
+        if(article.title.includes(req.body)) {
+            articlesToSend.push(article);
+        }
+
+        if (articlesToSend.length > 5) {
+            break;
+        }
+    }
+
+    res.send(articlesToSend);
+})
+
 app.listen(5000);

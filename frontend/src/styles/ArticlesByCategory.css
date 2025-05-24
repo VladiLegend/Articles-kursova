@@ -1,0 +1,13 @@
+.articles-by-category-wrapper {
+    flex-wrap: wrap;
+    gap: 1rem;
+    box-sizing: border-box;
+    margin-top: 1rem;
+    justify-content: center;
+}
+
+.category-articles-container {
+    flex: 1 1;
+    min-width: calc(30% - 1rem);
+    max-width: calc(30% - 1rem);
+}

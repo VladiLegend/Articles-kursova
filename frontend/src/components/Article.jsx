@@ -84,14 +84,14 @@ export default function Article(){
             articleInfo ? typeof articleInfo === "object" && <div className="article-viewport flex-container-column">
                 <div className="flex-container-column article-header-area">
                     <h1>{articleInfo.title}</h1>
-                    <div className="flex-container-column" style={{width: "fit-content", margin: "0 auto"}}>
+                    <div className="flex-container" style={{justifyContent: "space-between", alignItems: "center"}}>
                         <label className="article-category">Category: {articleInfo.category[0].toUpperCase() + articleInfo.category.substring(1)}</label>
                         <div className="flex-container">
                             <label className="article-favorites">Favorites: {articleFavorites}</label>
                             <button className="generic-btn" onClick={AddOrRemoveFavorite}>{isInFavorites ? "Remove From Favorites" : "Add To Favorites"}</button>
                             {
                                 articleInfo.creator === sessionStorage.getItem("email") &&
-                                <button className="article-delete-btn" onClick={() => setIsDeleteArticleDialogOpen(true)}>X</button>
+                                <button className="article-delete-btn" onClick={() => setIsDeleteArticleDialogOpen(true)}>Delete</button>
                             }
                         </div>
                     </div>

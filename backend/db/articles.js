@@ -51,7 +51,7 @@ const articles = [
         id: "7",
         title: "What to do in case of an emergency where someone's life is on the line!",
         content: "First of all, keep calm and collected. Do not panic.\nYou need to directly point or call to someone and tell them do dial the emergency phoneline (112 in europe). If you just yell \"somebody call 112\", people will assume someone else will call and in the end nobody will.\nIf the person doesn't have a pulse - CHEST COMPRESSIONS. Even if you break a few ribs that doesn't matter. The person is clinically dead already. Doing chest compressions is the only thing at this point which could save him until professionals come to the scene.\nMouth to mouth isn't needed unless the person has drawned.",
-        category: "movies",
+        category: "fitness",
         creator: "john@mail.com",
         favourites: 2
     },
