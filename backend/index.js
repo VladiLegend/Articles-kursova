@@ -12,6 +12,7 @@ const corsOptions = {
 };
 
 app.use(cors(corsOptions));
+app.use(express.json());
 
 function createRandomString(length) {
     let result = '';
@@ -167,7 +168,7 @@ app.post("/search", (req, res) => {
     const articlesToSend = [];
 
     for (const article of articles) {
-        if(article.title.includes(req.body)) {
+        if(article.title.toLowerCase().includes(req.body.title.toLowerCase())) {
             articlesToSend.push(article);
         }
 

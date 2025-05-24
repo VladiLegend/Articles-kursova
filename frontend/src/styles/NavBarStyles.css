@@ -22,6 +22,10 @@
     position: relative;
     z-index: 10;
 }
+.drop-down-nav-container:hover .drop-down-nav{
+    opacity: 1;
+    pointer-events: all;
+}
 
 .drop-down-nav {
     padding: 0.25rem;
@@ -37,13 +41,24 @@
 .drop-down-nav >.drop-down-nav-item:nth-child(2n) {
     background-color: var(--accent-color);
 }
+.drop-down-nav >.nav-search-result-item:nth-child(2n) {
+    background-color: var(--accent-color);
+}
 
 .drop-down-nav >.drop-down-nav-item:nth-child(2n):hover {
     background-color: var(--hover-accent-color);
     color: white;
 }
+.drop-down-nav >.nav-search-result-item:nth-child(2n):hover {
+    background-color: var(--hover-accent-color);
+    color: white;
+}
 
 .drop-down-nav >.drop-down-nav-item:last-child {
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
+}
+.drop-down-nav >.nav-search-result-item:last-child {
     border-bottom-left-radius: 8px;
     border-bottom-right-radius: 8px;
 }
@@ -64,7 +79,8 @@
 }
 
 .nav-search-input {
-    border: none;
+    border: solid 2px var(--hover-accent-color);
+    box-sizing: border-box;
     outline: none;
     border-radius: 5px;
     background-color: var(--accent-color);
@@ -74,9 +90,24 @@
 .nav-search-input:focus {
     outline: none;
 }
+.nav-search-input::placeholder {
+    color: white;
+}
 
 .nav-login {
     margin-left: auto;
     margin-right: 1rem;
     cursor: pointer;
+}
+
+.nav-search-result-item {
+    cursor: pointer;
+    background-color: var(--button-color);
+    padding: 0.25rem;
+    text-wrap: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+.nav-search-result-item:hover {
+    background-color: var(--hover-color);
 }
