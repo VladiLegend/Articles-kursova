@@ -1,10 +1,12 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import "../styles/ArticleStyles.css";
 import Dialog from "./Dialog";
+import { LoggedInContext } from "../App";
 
 export default function Article(){
     const { articleID } = useParams();
+    const [isLoggedIn, setIsLoggedIn] = useContext(LoggedInContext);
 
     const navigate = useNavigate();
 
@@ -27,14 +29,13 @@ export default function Article(){
     }, [])
 
     useEffect(() => {
-        console.log(articleInfo);
         if (!articleInfo) {return;}
         setIsInFavorites(articleInfo.isInFavorites);
         setArticleFavorites(articleInfo.favourites);
     }, [articleInfo]);
 
     function AddOrRemoveFavorite() {
-        if (!sessionStorage.getItem("sessionID")) {
+        if (!isLoggedIn) {
             navigate("/login");
         }
         if (isInFavorites) {
@@ -82,7 +83,7 @@ export default function Article(){
         content={deleteDialogContent}
         onOk={deleteDialogContent.startsWith("Are") ? handleArticleDeletion : undefined}/>
         {
-            articleInfo ? <div className="article-viewport flex-container-column">
+            articleInfo ? (<div className="article-viewport flex-container-column">
                 <div className="flex-container-column article-header-area">
                     <h1>{articleInfo.title}</h1>
                     <div className="flex-container" style={{justifyContent: "space-between", alignItems: "center"}}>
@@ -98,8 +99,7 @@ export default function Article(){
                     </div>
                 </div>
                 <p className="article-content">{articleInfo.content}</p>
-            </div>
-
+            </div>)
             : <h1>Such article does not exist!</h1>
         }
         </>

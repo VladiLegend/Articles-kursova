@@ -100,7 +100,7 @@ app.get("/articles/:category", (req, res) => {
 
 app.get("/article/:id", (req, res) => {
     const article = {...articles.find(a => a.id == req.params.id)};
-    if (article) {
+    if (article.id) {
         if (sessions[req.headers.authorization]) {
             article.isInFavorites = sessions[req.headers.authorization].favorites.includes(article.id);
         }
