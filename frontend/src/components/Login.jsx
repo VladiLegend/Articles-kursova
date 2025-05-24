@@ -1,10 +1,10 @@
 import { Link, useNavigate } from "react-router-dom";
 import "../styles/LoginStyles.css";
-import { useState, useContext } from "react";
+import { useState, useContext, useEffect } from "react";
 import Dialog from "./Dialog";
 import { LoggedInContext } from "../App";
 
-export default function Login({returnTo}) {
+export default function Login() {
     const [dialogIsOpen, setDialogIsOpen] = useState(false);
     const [dialogContent, setDialogContent] = useState("");
     const [isLoggedIn, setIsLoggedIn] = useContext(LoggedInContext);
@@ -24,13 +24,19 @@ export default function Login({returnTo}) {
             sessionStorage.setItem("sessionID", res.text);
             sessionStorage.setItem("email", e.target["0"].value);
             setIsLoggedIn(true);
-            navigate(returnTo ? returnTo : "/");
+            navigate("/");
         }
         else {
             setDialogContent(res.text);
             setDialogIsOpen(true);
         }
     }
+
+    useEffect(() => {
+        if (isLoggedIn) {
+            navigate("/");
+        }
+    }, []);
 
     return (
         <>

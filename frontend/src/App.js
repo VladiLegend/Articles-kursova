@@ -8,6 +8,7 @@ import Article from './components/Article.jsx';
 import ErrorPage from './components/ErrorPage.jsx';
 import ArticlesByCategory from './components/ArticlesByCategory.jsx';
 import CreateArticle from './components/CreateArticle.jsx';
+import Register from './components/Register.jsx';
 
 export const LoggedInContext = createContext();
 
@@ -20,6 +21,7 @@ function App() {
       <Routes>
         <Route path='/' element={<Home />}/>
         <Route path='/login' element={<Login />}/>
+        <Route path='/register' element={<Register />} />
         <Route path='/article/:articleID' element={<Article />}/>
         <Route path='/category/:category' element={<ArticlesByCategory />} />
         <Route path='/create' element={<CreateArticle />}/>

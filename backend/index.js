@@ -228,4 +228,41 @@ app.post("/articles/create", (req, res) => {
     res.status(200).send(newArticle);
 })
 
+app.post("/user/register", (req, res) => {
+    if (!req.body.email) {
+        res.status(400).send("Email cannot be empty.");
+        return;
+    }
+    if (!req.body.password) {
+        res.status(400).send("Password cannot be empty.");
+        return;
+    }
+
+    for (const user of users) {
+        if (user.email === req.body.email) {
+            res.status(400).send("This email is already registered!");
+            return;
+        }
+    }
+
+    const newUser = {
+        email: req.body.email,
+        password: req.body.password,
+        sessionID: null,
+        favorites: []
+    };
+
+    while(true) {
+        const sessionID = createRandomString(30);
+        if (!sessions[sessionID]) {
+            sessions[sessionID] = newUser;
+            newUser.sessionID = sessionID;
+            break;
+        }
+    }
+    
+    users.push(newUser);
+    res.send(newUser.sessionID);
+})
+
 app.listen(5000);
