@@ -1,7 +1,7 @@
 # Articles-kursova
 
 # How to run
-Go to backend, open a terminal and type
+Go to the ```backend``` folder, open a terminal and type
 ```bash
 npm i
 npm run runDev
@@ -9,7 +9,7 @@ npm run runDev
 DO NOT close the terminal window or you will stop the server.
 
 
-After that, go to frontend, open a terminal and type
+After that, go to the ```frontend``` folder, open a terminal and type
 ```bash
 npm i
 npm start
