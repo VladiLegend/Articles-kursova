@@ -180,4 +180,13 @@ app.post("/search", (req, res) => {
     res.send(articlesToSend);
 })
 
+app.get("/checkAuthentication", (req, res) => {
+    if(sessions[req.headers.authorization]) {
+        res.sendStatus(200);
+    }
+    else {
+        res.sendStatus(401);
+    }
+})
+
 app.listen(5000);

@@ -1,4 +1,4 @@
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 import "../styles/NavBarStyles.css";
 import { useContext, useState, useRef, useEffect } from "react";
 import { LoggedInContext } from "../App";
@@ -6,6 +6,8 @@ import { LoggedInContext } from "../App";
 export default function NavBar() {
     const [isSearchDropDownOpen, setIsSearchDropDownOpen] = useState(false);
     const [isLoggedIn, setIsLoggedIn] = useContext(LoggedInContext);
+    const location = useLocation();
+
     const navigate = useNavigate();
     function handleLoginButton(){
         if(isLoggedIn){
@@ -53,6 +55,16 @@ export default function NavBar() {
         }
         setSearchResultOverflows(overflowingTitles);
     }, [foundArticles]);
+
+    useEffect(() => {
+        async function userIsAuthenticated() {
+            setIsLoggedIn(await fetch("http://localhost:5000/checkAuthentication", {
+                method: "GET",
+                headers: {Authorization: sessionStorage.getItem("sessionID")}
+            }).then(res => res.status === 200));
+        }
+        userIsAuthenticated();
+    }, [location])
 
     return (
         <>
