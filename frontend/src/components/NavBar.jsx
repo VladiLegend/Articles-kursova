@@ -81,6 +81,8 @@ export default function NavBar() {
                 </div>
             </div>
 
+            <Link to="/create" className="nav-bar-item">Create</Link>
+
             <div className="drop-down-nav-container nav-bar-item flex-container nav-search-container">
                 <input type="text" name="search" id="search" className="nav-search-input" placeholder="Search" onBlur={() => setIsSearchDropDownOpen(false)}
                 onInput={handleSearch}/>

@@ -33,6 +33,7 @@
     color: white;
     text-wrap: wrap;
     word-wrap: break-word;
+    white-space: break-spaces;
 }
 
 .dialog-footer {

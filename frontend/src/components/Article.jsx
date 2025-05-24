@@ -27,6 +27,7 @@ export default function Article(){
     }, [])
 
     useEffect(() => {
+        console.log(articleInfo);
         if (!articleInfo) {return;}
         setIsInFavorites(articleInfo.isInFavorites);
         setArticleFavorites(articleInfo.favourites);
@@ -81,7 +82,7 @@ export default function Article(){
         content={deleteDialogContent}
         onOk={deleteDialogContent.startsWith("Are") ? handleArticleDeletion : undefined}/>
         {
-            articleInfo ? typeof articleInfo === "object" && <div className="article-viewport flex-container-column">
+            articleInfo ? <div className="article-viewport flex-container-column">
                 <div className="flex-container-column article-header-area">
                     <h1>{articleInfo.title}</h1>
                     <div className="flex-container" style={{justifyContent: "space-between", alignItems: "center"}}>
@@ -99,7 +100,7 @@ export default function Article(){
                 <p className="article-content">{articleInfo.content}</p>
             </div>
 
-            : !articleInfo && <h1>Such article does not exist!</h1>
+            : <h1>Such article does not exist!</h1>
         }
         </>
         

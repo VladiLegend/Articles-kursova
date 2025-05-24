@@ -1,6 +1,6 @@
 import { useEffect, useState, useRef } from "react";
 import { Link, useParams } from "react-router-dom";
-import "../styles/ArticlesByCategory.css";
+import "../styles/ArticlesByCategoryStyles.css";
 
 export default function ArticlesByCategory() {
     const { category } = useParams();

@@ -189,4 +189,43 @@ app.get("/checkAuthentication", (req, res) => {
     }
 })
 
+app.post("/articles/create", (req, res) => {
+    if (!sessions[req.headers.authorization]) {
+        res.status(400).send("Invalid session.");
+        return;
+    }
+
+    const availableCategories = ["games", "fitness", "cooking", "art", "movies"];
+    const errors = [];
+    if (!req.body.title) {
+        errors.push("Title cannot be empty.\n");
+    }
+    if (!req.body.category) {
+        errors.push("Category cannot be empty.\n");
+    }
+    else if (!availableCategories.includes(req.body.category.toLowerCase())) {
+        errors.push("This category is unavailable.\nAvailable categories are: " + availableCategories.join(",") + ".\n");
+    }
+    if (!req.body.content) {
+        errors.push("Content cannot be empty.\n");
+    }
+
+    if (errors.length) {
+        res.status(400).send(errors);
+        return;
+    }
+
+    const newArticle = {
+        id: "" + (articles.length + 1),
+        title: req.body.title,
+        category: req.body.category.toLowerCase(),
+        content: req.body.content,
+        creator: sessions[req.headers.authorization].email,
+        favourites: 0
+    };
+    articles.push(newArticle);
+
+    res.status(200).send(newArticle);
+})
+
 app.listen(5000);

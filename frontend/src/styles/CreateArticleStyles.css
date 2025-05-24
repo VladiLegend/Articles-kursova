@@ -1,0 +1,104 @@
+.create-viewport {
+    width: 80vw;
+    margin: 1rem auto 0;
+    justify-content: center;
+    align-items: center;
+}
+
+.create-title-input {
+    padding: 0.25rem;
+    box-sizing: border-box;
+    width: 50%;
+    min-width: 22rem;
+    border: solid 2px var(--border-color);
+    margin-bottom: 1rem;
+    border-radius: 5px;
+}
+
+.create-category-input {
+    padding: 0.25rem;
+    padding-right: 1.5rem;
+    border: solid 2px var(--border-color);
+    border-radius: 5px;
+    box-sizing: border-box;
+    width: 100%;
+    cursor: pointer;
+    font-size: 1.05rem;
+}
+.create-category-input:focus {
+    outline: none;
+}
+
+.create-category-dropdown-icon {
+    height: 100%;
+    width: 1.75rem;
+    right: 0;
+    position: absolute;
+    box-sizing: border-box;
+    padding: 0.5rem;
+    transform: rotateZ(270deg);
+    transition: all 0.1s;
+}
+
+.create-category-container {
+    position: relative;
+    width: 100%;
+    min-width: 8rem;
+    height: calc(1.5rem + 4px);
+    cursor: pointer;
+}
+
+.create-categories-container {
+    position: absolute;
+    top: calc(1.5rem + 4px);
+    left: 0;
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
+    opacity: 0;
+    transition: all 0.2s;
+    pointer-events: none;
+    width: 100%;
+}
+.create-categories-container >.create-category:nth-child(2n) {
+    background-color: var(--accent-color);
+}
+.create-categories-container >.create-category:nth-child(2n):hover {
+    background-color: var(--hover-accent-color);
+    color: white;
+}
+
+.create-categories-container >:last-child {
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
+}
+
+.create-category-outer-container {
+    margin-bottom: 1rem;
+    position: relative;
+    width: 8rem;
+}
+
+.create-category {
+    cursor: pointer;
+    background-color: var(--button-color);
+    padding: 0.25rem 0.5rem 0.25rem 0.25rem;
+}
+.create-category:hover {
+    background-color: var(--hover-color);
+}
+
+.create-content {
+    box-sizing: border-box;
+    border: solid 3px var(--border-color);
+    padding: 0.5rem;
+    width: 100%;
+    max-width: 100%;
+    min-height: 10rem;
+    font-size: 1rem;
+    font-family: inherit;
+    border-radius: 10px;
+    margin-bottom: 1rem;
+}
+.create-content:focus {
+    outline: none;
+}

@@ -7,6 +7,7 @@ import { createContext, useState } from 'react';
 import Article from './components/Article.jsx';
 import ErrorPage from './components/ErrorPage.jsx';
 import ArticlesByCategory from './components/ArticlesByCategory.jsx';
+import CreateArticle from './components/CreateArticle.jsx';
 
 export const LoggedInContext = createContext();
 
@@ -21,6 +22,7 @@ function App() {
         <Route path='/login' element={<Login />}/>
         <Route path='/article/:articleID' element={<Article />}/>
         <Route path='/category/:category' element={<ArticlesByCategory />} />
+        <Route path='/create' element={<CreateArticle />}/>
         <Route path='*' element={<ErrorPage />}/>
       </Routes>
     </LoggedInContext.Provider>
